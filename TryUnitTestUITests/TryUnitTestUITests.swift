@@ -22,16 +22,23 @@ class TryUnitTestUITests: XCTestCase {
   func testButton() throws {
     // UI tests must launch the application that they test.
     let app = XCUIApplication()
-    // (1)
     let button = app.buttons["TestButton"]
     let text = app.staticTexts["TestText"]
+    let text2 = app.staticTexts["TestText2"]
+    let textfield = app.textFields["TestTextField"]
+    // (1)
+    // Textの表示内容はvalueで取る
     XCTAssertEqual(text.value as! String, "Hello")
     // (2)
+    // Buttonの表示内容はtitleで取る
     XCTAssertEqual(button.title, "Hello")
     // (3)
+    textfield.typeText("テスト")
     button.tap()
     // (4)
     XCTAssertEqual(button.title, "World")
+    // (5)
+    XCTAssertEqual(textfield.value as! String, text2.value as! String)
   }
 
 //  func testLaunchPerformance() throws {

@@ -9,14 +9,40 @@ import SwiftUI
 
 struct ContentView: View {
   @State private var buttonTitle = "Hello"
+  @State private var textEditTest = ""
+  @State private var textEditTest2 = ""
   var body: some View {
-    Text(buttonTitle)
-      .accessibility(identifier: "TestText")
-    Button(buttonTitle) {
-      buttonTitle = "World"
+    VStack {
+      HStack {
+        Text("TEXT_1:")
+          .padding()
+        Text(buttonTitle)
+          .accessibility(identifier: "TestText")
+          .padding()
+      }
+      HStack {
+        Text("TEXT_2:")
+          .padding()
+        Text(textEditTest2)
+          .accessibility(identifier: "TestText2")
+          .padding()
+      }
+      TextField(
+        "testTextField",
+        text: $textEditTest
+      )
+        .accessibility(identifier: "TestTextField")
+        .frame(width: 200)
+      Button(buttonTitle) {
+        buttonTitle = "World"
+        textEditTest2 = textEditTest
+      }
+        .accessibility(identifier: "TestButton")
+        .padding()
     }
-    .accessibility(identifier: "TestButton")
-    .padding()
+    .frame(
+      width: 600,
+      height: 600)
   }
 }
 
